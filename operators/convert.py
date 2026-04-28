@@ -5,8 +5,8 @@ from bpy.types import Operator, Panel
 
 class MIO3BONE_OT_ConvertNames(Operator):
     bl_idname = "armature.convert_bone_names"
-    bl_label = "ボーン名を変換"
-    bl_description = "ポーズモードで表示されているボーンの名前を変換します"
+    bl_label = "Convert Bone Names"
+    bl_description = "Renames the bones displayed in Pose Mode."
     bl_options = {"REGISTER", "UNDO"}
 
     conventions = {
@@ -127,7 +127,7 @@ class MIO3BONE_OT_ConvertNames(Operator):
     def execute(self, context):
         armature = context.active_object
         if armature.type != "ARMATURE":
-            self.report({"ERROR"}, "アーマチュアを選択してください")
+            self.report({"ERROR"}, "Please select an armature.")
             return {"CANCELLED"}
 
         props = context.scene.mio3bone
@@ -153,7 +153,7 @@ class MIO3BONE_OT_ConvertNames(Operator):
 class MIO3BONE_OT_PrefixAdd(bpy.types.Operator):
     bl_idname = "mio3bone.prefix_add"
     bl_label = "Add Item"
-    bl_description = ""
+    bl_description = "prefix_add"
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
@@ -169,6 +169,7 @@ class MIO3BONE_OT_PrefixAdd(bpy.types.Operator):
 class MIO3BONE_OT_PrefixRemove(bpy.types.Operator):
     bl_idname = "mio3bone.prefix_remove"
     bl_label = "Remove Item"
+    bl_description = "prefix_add"
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
@@ -184,7 +185,7 @@ class MIO3BONE_PT_Convert(Panel):
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_category = "Mio3"
-    bl_label = "フォーマット変換"
+    bl_label = "Format Conversion"
     bl_parent_id = "MIO3BONE_PT_Main"
     bl_options = {"DEFAULT_CLOSED"}
 
