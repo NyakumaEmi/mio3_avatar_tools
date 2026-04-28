@@ -21,22 +21,8 @@ bl_info = {
     "version": (1, 0),
     "blender": (4, 1, 0),
     "location": "View3D > Mio3",
-    "description": "Avatar Setup support",
+    "description": "Avatar Armature Bone Setup support. Translated from Japanese to English.",
     "category": "Tools",
-}
-
-translation_dict = {
-    "ja_JP": {
-        ("*", "Suffix L/R"): "L/Rを接尾辞にする",
-        ("*", "Delim"): "デリミタ",
-        ("*", "EndBone"): "エンドボーン",
-        ("Operator", "Evenly Bones"): "ボーンを均等",
-        ("Operator", "Align Bones (child)"): "ボーンを整列（末端を基準）",
-        ("Operator", "Numbering Bones"): "ボーンに通し番号をふる",
-        ("Operator", "Unify roles"): "ロールを統一",
-        ("*", "Preserve Length Bone"): "各ボーンの長さを維持",
-        ("*", "After Format"): "変換後",
-    }
 }
 
 
@@ -76,21 +62,21 @@ class MIO3BONE_PG_PrefixItem(PropertyGroup):
 
 
 class MIO3BONE_PG_Main(PropertyGroup):
-    show_prefix: BoolProperty(name="カスタムプレフィックス")
+    show_prefix: BoolProperty(name="Custom Prefix")
     prefix_list: CollectionProperty(name="List", type=MIO3BONE_PG_PrefixItem)
     prefix_active_index: IntProperty()
-    remove_prefix: BoolProperty(name="プレフィックスを削除", default=False)
+    remove_prefix: BoolProperty(name="Remove Prefix", default=False)
     input_prefix: StringProperty(name="Prefix", default="Twist_")
     convert_types: EnumProperty(
         name="After Format",
         description="",
         items=[
-            ("UpperArm_L", "UpperArm_L (推奨)", ""),
+            ("UpperArm_L", "UpperArm_L (Recommended)", ""),
             ("UpperArm.L", "UpperArm.L", ""),
         ],
         default="UpperArm_L",
     )
-    preset_reverse: BoolProperty(name="変換を反転")
+    preset_reverse: BoolProperty(name="Invert Transformation")
 
 
 classes = [
@@ -109,7 +95,6 @@ modules = [
 
 
 def register():
-    bpy.app.translations.register(__name__, translation_dict)
     for cls in classes:
         bpy.utils.register_class(cls)
     for module in modules:
@@ -131,7 +116,6 @@ def unregister():
     bpy.types.VIEW3D_MT_armature_context_menu.remove(menu)
     bpy.types.VIEW3D_MT_armature_add.remove(menu_armature_add)
     del bpy.types.Scene.mio3bone
-    bpy.app.translations.unregister(__name__)
 
 
 if __name__ == "__main__":
