@@ -26,7 +26,7 @@ def restore_current_selection(armature, current_selection):
 class MIO3BONE_OT_bone_evenly(Operator):
     bl_idname = "armature.mio3_bone_evenly"
     bl_label = "Evenly Bones"
-    bl_description = "ボーンの長さを均等にする"
+    bl_description = "Equalize Bone Lengths"
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
@@ -75,7 +75,7 @@ class MIO3BONE_OT_bone_evenly(Operator):
 class MIO3BONE_OT_bone_align(Operator):
     bl_idname = "armature.mio3_bone_align"
     bl_label = "Align Bones (child)"
-    bl_description = "ボーンを整列する（先頭と末端のボーンを基準）"
+    bl_description = "Align Bones (Based on First and Last Bones)"
     bl_options = {"REGISTER", "UNDO"}
 
     roll: BoolProperty(name="Unify roles", default=False)
